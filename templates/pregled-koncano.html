@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Končana opravila{% endblock title %}
+
+{% block naslov %}Končana opravila {% endblock naslov %}
+{% block opis %}Tu so opravila, ki so že končana lahko jih ponovno aktiviraš {% endblock opis %}
+
+
+{% block vsebina %}
+    <div class="col-sm-8 col-sm-offset-2">
+        <table class="table">
+            <tr>
+                <th>Kreirano</th>
+                <th>Naloga</th>
+                <th>Prioriteta</th>
+                <th>Opis</th>
+                <th>Izvajalec</th>
+                <th>Izbrisan</th>
+                <th>Možnosti</th>
+                
+            </tr>
+            {% for opravilo in seznam_koncano %}
+            <tr>
+                <td>{{ opravilo.kreirano }}</td>
+                <td>{{ opravilo.naloga }}</td>
+                <td>{{ opravilo.prioriteta }}</td>
+                <td>{{ opravilo.opis }}</td>
+                <td>{{ opravilo.izvajalec }}</td>
+                <td>{{opravilo.izbrisan }}</td>
+                <td><a href="/opravilo/{{opravilo.key.id()}}/ponovi" class="btn btn-info">Možnosti</a></td>
+                
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock vsebina %}

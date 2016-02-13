@@ -1,0 +1,52 @@
+{% extends "base.html"%}
+
+
+{% block title %} Dodaj opravilo {% endblock title%}
+
+{% block naslov %} Dodaj novo opravilo  {% endblock naslov %}
+{% block opis%} Novo opravilo {% endblock opis %}
+
+
+{% block vsebina %} 
+<div class="col-sm-8 col-sm-offset-2">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Vnos Opravila
+        </div>
+        <form action="/dodaj-opravilo" method="post" class="col-sm-6 col-sm-offset-3">
+            <div class="form-group">
+                <label for="naloga">Naloga - Opravilo</label> <br>
+                <input type="text" name="naloga" id="naloga" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="priorieteta">Izberi prioriteto naloge </label> <br>
+                <select name="prioriteta" id="prioriteta" class="form-control">
+                    <option value="1">1 - Najvišja </option>
+                    <option value="2">2 - Srednja </option>
+                    <option value="3">3 - Nizka </option>
+                </select>
+            </div>
+            <div class="from-control">
+                <label for="opis">Opis Naloge - opravila</label>
+                <textarea name="opis" id="opis" cols="30" rows="10" class="form-control">
+                    
+                </textarea>
+            </div>
+            <div class="form-group">
+             <label for="termin">Datum in ura dd.mm.YYYY H:M:S <br> <span class="krepko alert-danger">{{err}}</span></label>
+             <input type="datetime" name="termin" id="termin" class="form-control">   
+            </div>
+            <div class="form-group">
+                <label for="izvajalec">Odgovorna Oseba</label>
+                <input type="text" name="izvajalec" id="izvajalec" value="{{uporabnik.nickname()}}" class="form-control">
+            </div>
+            <hr>
+            <div>
+                <button type="submit" class="btn btn-success">Shrani Opravilo </button> <br>
+            </div>
+            
+            
+        </form>
+    </div>
+</div>
+{% endblock vsebina %}

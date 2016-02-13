@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %} Administracija {% endblock title %}
+
+
+{% block naslov %} Nadzorna plošča Administrator {% endblock naslov %}
+{% block opis %} Skrbnikov pregled nad aplikacijo {% endblock opis %}
+
+{% block vsebina%}
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+        <a href="/" class="btn btn-danger">Domov</a>
+        
+    </div>
+</div>
+
+<h3 class="sredinsko">Seznam vseh  opravil vseh uporabnikov </h3>
+<hr>
+<table class="table">
+    <tr>
+        <th>Kreirano</th>
+        <th>Naloga</th>
+        <th>Izvajalec / uporabnik</th>
+        <th>Izbrisan</th>
+        <th>Končano</th>
+        <th>Podrobnosti</th>
+    </tr>
+    {% for opravilo in seznam %}
+    <tr>
+        <td>{{opravilo.kreirano}}</td>
+        <td>{{opravilo.naloga}}</td>
+        <td>{{opravilo.izvajalec}}</td>
+        <td>{{opravilo.izbrisan}}</td>
+        <td>{{opravilo.finished}}</td>
+        <td><a href="/opravilo/{{opravilo.key.id()}}/administracija" class="btn btn-primary">Podrobnosti</a></td>
+        
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock vsebina %}

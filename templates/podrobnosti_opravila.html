@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+
+{% block title %}Podrobnosti{% endblock title %}
+
+
+{% block naslov %}Podrobnosti Opravila {% endblock naslov %}
+{%  block opis %} 
+    Pregled podrobnosti in zaključek
+{% endblock opis %}
+
+
+{% block vsebina %}
+    <div class="col-sm-6 col-sm-offset-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Podrobnosti Opravila - Naloge
+            </div>
+            <p><span class="krepko">Opravilo id: </span> {{opravilo.key.id()}}</p>
+            <p><span class="krepko">Naloga: </span> {{opravilo.naloga}}</p>
+            <p>
+            <span class="krepko">Izvajalec: </span> {{opravilo.izvajalec}}     
+            <span class="krepko">Termin: </span> {{opravilo.termin}}
+            
+            </p>
+            <p></p>
+            <p>
+                <form action="/opravilo/{{opravilo.key.id()}}" method="post">
+                    <label for="opis">Opis naloge</label> <br>
+                    <textarea name="opis" id="opis" cols="30" rows="10" class="form-control">
+                        {{opravilo.opis}}
+                    </textarea>
+                    <br>
+                    <div class="form-group">
+                        <label for="finished"> Status opravila </label> <br>
+                        <select name="finished" id="finished">
+                           <option value="ne" selected >NE - V delu</option>
+                            <option value="da">DA - Končano</option>
+                            <option value="x">X - Izbriši</option>
+                        </select>
+                    </div>
+                    <hr>
+                    <button type="submit" class="btn btn-success">OK</button>
+                    <button type="reset" class="btn btn-info">Počisti spremembe</button>
+                </form>
+            </p>
+        </div>
+    </div>
+
+{% endblock vsebina %}

@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+       
+       {% block title %}Osnovna stran{% endblock title %}
+       {%block naslov%}Upravitelj opravil{% endblock naslov %}
+       
+       {% block opis %} To je moj upravitelj opravil {% endblock opis %}
+
+       
+      {% block vsebina %}
+        {% if logiran %}
+          <div class="col-sm-4 col-sm-offset-4">
+              <div class="panel panel-primary">
+              <div class="panel-heading">
+                  Navodila
+              </div>
+              <div class="panel-body">
+                  <p>
+                      To je zelo preprosta apliakcija za upravljanje opravil
+                      Uporabnik lahko doda novo opravilo, pregelduje katera opraivla ima 
+                      še za postroti ureja in birše opravila
+                  </p>
+              </div>
+              
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <a href="/dodaj-opravilo" class="btn btn-primary">Dodaj opravilo</a>
+                <a href="/seznam-koncanih" class="btn btn-success">Končana opravila</a>
+                 {% if admin %}
+                    <a href="/admin" class="btn btn-success">Administracija</a>
+                  {% endif %}
+                  <a href="{{ logout_url}}" class="btn btn-danger">Odjava</a>
+                
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 sredinsko">
+            <h2>Seznam mojih Opravil </h2>
+            <hr>
+        </div>
+        
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <table class="table">
+                    <tr>
+                        <th>Kreirano</th>
+                        <th>Naloga</th>
+                        <th>Izvajalec</th>
+                        <th>Prioriteta</th>
+                        <th>Izbrisan</th>
+                        <th>Status</th>
+                    </tr>
+                    {% for task in seznam %}
+                    <tr>
+                        <td>{{task.kreirano}}</td>
+                        <td>{{task.naloga}}</td>
+                        <td>{{task.izvajalec}}</td>
+                        <td>{{task.prioriteta}}</td>
+                        <td>{{task.izbrisan}}</td>
+                        {% if task.finished %}
+                        <td> <span class="krepko alert-success">Končano</span></td>
+                        {% else %}
+                        <td><a href="/opravilo/{{task.key.id()}}" class="btn btn-primary">Podrobnosti</a></td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-sm-4 col-sm-offset-4">
+              <div class="panel panel-primary">
+              <div class="panel-heading">
+                  Navodila
+              </div>
+              <div class="panel-body">
+                  <p>
+                      To je zelo preprosta apliakcija za upravljanje opravil
+                      Uporabnik lahko doda novo opravilo, pregelduje katera opraivla ima
+                      še za postroti ureja in birše opravila
+                  </p>
+                  <div>
+                      <a href="{{ login_url }}" class="btn btn-primary">Prijava</a>
+                  </div>
+              </div>
+
+          </div>
+        </div>
+
+        {% endif %}
+    {% endblock vsebina %}
+
+    
